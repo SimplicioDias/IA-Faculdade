@@ -39,13 +39,21 @@ class No():
         return self.__pai
     
     def calcula_heuristica(self):
-            for quadro_atual in self.__estado:
-                indice_atual = self.__estado.index(quadro_atual)
-                indice_meta = self.__meta.index(quadro_atual)
-                linha_atual, col_atual = indice_atual // int(np.sqrt(len(self.__estado))), indice_atual % int(np.sqrt(len(self.__estado)))
-                linha_meta, col_meta = indice_meta // int(np.sqrt(len(self.__estado))), indice_meta % int(np.sqrt(len(self.__estado)))
+        
+            for peca in self.__estado:
+                indice_atual = self.__estado.index(peca)
+                indice_meta = self.__meta.index(peca)
+                
+                linha_atual = indice_atual // int(np.sqrt(len(self.__estado)))
+                col_atual = indice_atual % int(np.sqrt(len(self.__estado)))
+                
+                linha_meta = indice_meta // int(np.sqrt(len(self.__estado)))
+                col_meta = indice_meta % int(np.sqrt(len(self.__estado)))
+                
                 self.__heuristica += self.manhattan(linha_atual, col_atual, linha_meta, col_meta)
 
             
     def manhattan(self, x1, y1, x2, y2):
         return abs(x1 - x2) + abs(y1 - y2)
+
+
